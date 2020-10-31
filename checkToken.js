@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { SECRET_KEY, PATH_WHITELIST } = require('./constants');
 
 module.exports = (req, res, next) => {
-    
+
     const authHeader = req.header('Authorization');
 
     if (authHeader !== undefined) {
@@ -14,12 +14,7 @@ module.exports = (req, res, next) => {
         if (type !== 'Bearer') {
             res.status(401).send('Unauthorized user!');
         } else {
-            try {
-                const res = jwt.verify(token, SECRET_KEY);
-                console.log(res);
-            } catch(e) {
-                res.status(401).send('Unauthorized user!');
-            }
+            const res = jwt.verify(token, SECRET_KEY);
             return next();
         }
 

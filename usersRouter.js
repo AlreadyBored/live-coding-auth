@@ -18,4 +18,14 @@ router.get('/:id', (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    const data = req.body;
+    const user = await usersService.createUser(data);
+    if(!user) {
+        res.status(400).send('Bad request!');
+    } else {
+        res.status(200).send(user);
+    }
+})
+
 module.exports = router;

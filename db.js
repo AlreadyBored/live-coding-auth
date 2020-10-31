@@ -1,21 +1,11 @@
+const { hashPassword } = require('./hashHelper');
 const mockUsers = [
     {
-        name: 'User1',
-        login: 'login1',
-        password: 'u123451',
-        id: 'id1'
-    },
-    {
-        name: 'User2',
-        login: 'login2',
-        password: 'u123452',
-        id: 'id2'
-    },
-    {
-        name: 'User3',
-        login: 'login3',
-        password: 'u123453',
-        id: 'id3'
+        name: 'Admin',
+        login: 'admin',
+        //12345
+        password: '$2b$10$m.b8Erwxoy7TVfkLxPrnp.3E0k1ewu8vLJ2guBUrmoIbHLrA/b6J2',
+        id: 'id0'
     }
 ];
 
@@ -32,8 +22,20 @@ const getByProps = (props) => mockUsers.find(user => {
     return matches.every(item => item === true);
 });
 
+const createUser = async (data) => {
+    const { password } = data;
+    const hashedPassword = await hashPassword(password);
+    const newUser = {
+        ...data,
+        password: hashedPassword
+    };
+    mockUsers.push(newUser);
+    return newUser;
+};
+
 module.exports = {
     getAll,
     getById,
-    getByProps
+    getByProps,
+    createUser
 };

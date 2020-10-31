@@ -6,7 +6,10 @@ const PATH_WHITELIST = [
     '/smthng'
 ];
 
+const DEFAULT_SALT_ROUNDS = 10;
+
 module.exports = {
     SECRET_KEY,
-    PATH_WHITELIST
+    PATH_WHITELIST,
+    DEFAULT_SALT_ROUNDS
 };

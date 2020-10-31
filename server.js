@@ -12,8 +12,6 @@ app.listen(PORT, () => {
     console.log(`App is runiing on port ${PORT}`);
 });
 
-app.use('/', checkToken);
-
 app.use('/login', loginRouter);
 
 app.use('/users', checkToken, usersRouter);
