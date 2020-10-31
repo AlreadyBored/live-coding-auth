@@ -1,7 +1,9 @@
 const express = require('express');
 const usersRouter = require('./usersRouter');
+const loginRouter = require('./loginRouter');
 
 const app = express();
+app.use(express.json());
 
 const PORT = 8080;
 
@@ -10,3 +12,4 @@ app.listen(PORT, () => {
 });
 
 app.use('/users', usersRouter);
+app.use('/login', loginRouter);

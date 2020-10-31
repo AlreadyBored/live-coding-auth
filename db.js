@@ -23,7 +23,17 @@ const getAll = () => mockUsers;
 
 const getById = (id) => mockUsers.find((user) => user.id === id);
 
+//{login: '12345', password: '12222'}
+const getByProps = (props) => mockUsers.find(user => {
+    const matches = Object.entries(props).map(item => {
+        const [prop, value] = item;
+        return user[prop] === value;
+    });
+    return matches.every(item => item === true);
+});
+
 module.exports = {
     getAll,
-    getById
+    getById,
+    getByProps
 };
