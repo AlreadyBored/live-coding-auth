@@ -9,7 +9,7 @@ const signToken = (login, password) => {
         return null;
     } else {
         const { id, login } = user;
-        const token = jwt.sign({id, login}, SECRET_KEY);
+        const token = jwt.sign({id, login}, SECRET_KEY, {expiresIn: '10m'});
         return token;
     }
 

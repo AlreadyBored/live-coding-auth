@@ -1,6 +1,7 @@
 const express = require('express');
 const usersRouter = require('./usersRouter');
 const loginRouter = require('./loginRouter');
+const checkToken = require('./checkToken');
 
 const app = express();
 app.use(express.json());
@@ -11,5 +12,9 @@ app.listen(PORT, () => {
     console.log(`App is runiing on port ${PORT}`);
 });
 
-app.use('/users', usersRouter);
+app.use('/', checkToken);
+
 app.use('/login', loginRouter);
+
+app.use('/users', checkToken, usersRouter);
+
